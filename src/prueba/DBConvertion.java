@@ -40,6 +40,7 @@ public class DBConvertion {
 		
 		
 		DB1.close();
+		DB1.vacuum("sqlite", "C:\\Users\\Sebastian\\Desktop\\MyProjects\\", "datos_ar.db");  // Se abre nuevamente la coneccion y se ejecuta VACUUM
 			
 		
 		ArrayList<Queryable> vendedor = DBmain.getVendedoresTable();  // Se extrae de Postgres tabla Vendedores	
@@ -48,7 +49,7 @@ public class DBConvertion {
 		
 		DB2.close();
 		
-		
+		DB1.vacuum("sqlite", "C:\\Users\\Sebastian\\Desktop\\MyProjects\\", "vendedores_ar.db"); // Conectamos de nuevo al final para hacer VACUUM
 		
 				
 	}

@@ -77,9 +77,36 @@ public void Insert(ArrayList<Queryable> querys){     //Funcion insertar query
 	}
 	
 	
+
+	public void vacuum(String dbType, String path, String db){
+		
+		
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:" + dbType + "://" + path + db);
+	      //System.out.println("Opened database successfully");
+
+	      stmt = c.createStatement();
+	      
+	      stmt.execute("PRAGMA auto_vacuum = 1");
+	      stmt.execute("VACUUM");
+	      
+	      //stmt.executeUpdate(sql);
+	      stmt.close();
+	      c.close();
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+		
+	}
+
 	
 	public void close(){
 		try {
+			
 			co.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
